@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlretrieve
 from download import *
 from save_pic_as_txt import *
+from check_db import *
 
 def collect_pics(website_url, web_prefix):
     URL = website_url
@@ -37,8 +38,16 @@ def collect_pics(website_url, web_prefix):
             file_jpeg = os.path.join("",full_pic_url.split("/")[-1])
             file = open("pics.txt") 
             #print(full_pic_url)
-            if full_pic_url in file.read():
+
+            if in_db(full_pic_url):
                 found = True
+                break
+            #else:
+            #add_db(full_pic_url)
+
+            #if full_pic_url in file.read():
+                #found = True
+            #else:
             else:
                 pic_urls.append(full_pic_url)
         
@@ -52,6 +61,9 @@ def collect_pics(website_url, web_prefix):
     #        download(full_pic_url)
  #           pic_urls.append(full_pic_url)
     
+    if len(pic_urls) > 0:
+        #print(pic_urls)
+        add_db(pic_urls)
     save_pic_as_txt(pic_urls)
 
     return pic_urls

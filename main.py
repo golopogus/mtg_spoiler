@@ -7,8 +7,8 @@ from save_pic_as_txt import *
 
 def generate_pics(url,url_prefix):
     pic_urls = collect_pics(url,url_prefix)
-    create_html(pic_urls)
     if len(pic_urls) > 0:
+        create_html(pic_urls)
         send_email()
 
 url = 'https://mythicspoiler.com/newspoilers.html'
