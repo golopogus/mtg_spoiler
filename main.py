@@ -1,6 +1,6 @@
 from collect_pics import *
 from create_html import *
-from send_email import *
+from send_email_ses import *
 from download import *
 from save_pic_as_txt import *
 

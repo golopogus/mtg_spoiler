@@ -19,11 +19,12 @@ def collect_pics(website_url, web_prefix):
     results = []
     pic_urls = []
 
-    while found == False:
+    #print(len(soup.find_all("div", class_="grid-container")))
+    while found == False:# and counter <= len(soup.find_all("div", class_="grid-container"))-1:
 
 
         results = soup.find_all("div", class_="grid-container")[counter]
-
+        
         #results.append(soup.find_all("div", class_="grid-container")[1])
 
         cards = results.find_all("div", class_="grid-card")
@@ -41,8 +42,10 @@ def collect_pics(website_url, web_prefix):
             else:
                 pic_urls.append(full_pic_url)
         
-        print(found)
+        #print(found)
         counter += 1
+        if counter > len(soup.find_all("div", class_="grid-container"))-1:
+            found = True
    #     if path.exists("card_list/" + file_jpeg):
    #         pass
    #     else:
